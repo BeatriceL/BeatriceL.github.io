@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script>
+		var data = window.prompt("input data");
+		var char = window.prompt("input a char to search");
+
+		var text1 = data.indexOf(char);
+		var text2 = data.lastIndexOf(char);
+		var text3 = data.indexOf(char, 3);
+		
+		document.writeln(text1);
+		document.writeln("<br>");
+		document.writeln(text2);
+		document.writeln("<br>");
+		document.writeln(text3);
+	</script>
+</body>
+</html>
