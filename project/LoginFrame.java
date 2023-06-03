@@ -124,10 +124,10 @@ public class LoginFrame {
 						String storedEmail = jdbc.getEmailFromAccount(inputAccount);
 						User user = new User(inputAccount,inputPassword,storedEmail);// 讓現在的User有相對應的帳號和密碼
 						// 實例化GUI class
-		                Homepage homepage = new Homepage();
+		                MainFrame mainframe = new MainFrame();
 		                
 		                // 顯示目標GUI
-		                homepage.setVisible(true);
+		                mainframe.setVisible(true);
 		                
 		                // 關閉當前GUI
 						frame.dispose();

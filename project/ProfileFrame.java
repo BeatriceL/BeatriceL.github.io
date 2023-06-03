@@ -156,12 +156,12 @@ public class ProfileFrame extends JFrame{
         homeBtn.setBorder(BorderFactory.createLineBorder(new Color(40, 42, 50)));
         homeBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // 跳轉至Home Page
+                // 跳轉至Main Frame
             	// 實例化GUI class
-                Homepage homepage = new Homepage();
+                MainFrame mainframe = new MainFrame();
                 
                 // 顯示目標GUI
-                homepage.setVisible(true);
+                mainframe.setVisible(true);
                 
                 // 關閉當前GUI
                 dispose();

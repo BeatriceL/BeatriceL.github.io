@@ -154,10 +154,10 @@ public class PostFrame extends JFrame {
                 // Back to HomeFrame
       
             	// 實例化GUI class
-                Homepage homepage = new Homepage();
+                MainFrame mainframe = new MainFrame();
                 
                 // 顯示目標GUI
-                homepage.setVisible(true);
+                mainframe.setVisible(true);
                 
                 // 關閉當前GUI
                 dispose();
