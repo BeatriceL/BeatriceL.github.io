@@ -3,11 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuBarDemo extends JFrame {
+public class Homepage extends JFrame {
     private JPanel pagePanel;
 
-    public MenuBarDemo() {
-        setTitle("MenuBar Demo");
+    public Homepage() {
+        setTitle("Homepage");
         setSize(1500, 800);
 
         // 創建MenuBar
@@ -166,7 +166,7 @@ public class MenuBarDemo extends JFrame {
     }
 
     public static void main(String[] args) {
-        MenuBarDemo demo = new MenuBarDemo();
+        Homepage demo = new Homepage();
         demo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         demo.setVisible(true);
     }

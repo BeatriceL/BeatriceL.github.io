@@ -123,7 +123,13 @@ public class LoginFrame {
 					} else if (jdbc.login(inputAccount, inputPassword)) {// 如果帳號密碼都正確 //有問題要做的事寫在JDBC
 						String storedEmail = jdbc.getEmailFromAccount(inputAccount);
 						User user = new User(inputAccount,inputPassword,storedEmail);// 讓現在的User有相對應的帳號和密碼
-						//開啟mainFrame並關閉loginFrame
+						// 實例化GUI class
+		                Homepage homepage = new Homepage();
+		                
+		                // 顯示目標GUI
+		                homepage.setVisible(true);
+		                
+		                // 關閉當前GUI
 						frame.dispose();
 						
 						System.out.println("你的帳號資訊"+user.getName()+user.getPassword()+user.getEmail());

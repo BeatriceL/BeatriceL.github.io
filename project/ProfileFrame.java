@@ -157,7 +157,13 @@ public class ProfileFrame extends JFrame{
         homeBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // 跳轉至Home Page
-                // HomeFrame homeFrame = new HomeFrame(user);
+            	// 實例化GUI class
+                Homepage homepage = new Homepage();
+                
+                // 顯示目標GUI
+                homepage.setVisible(true);
+                
+                // 關閉當前GUI
                 dispose();
             }
         });

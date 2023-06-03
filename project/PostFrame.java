@@ -154,10 +154,10 @@ public class PostFrame extends JFrame {
                 // Back to HomeFrame
       
             	// 實例化GUI class
-                MenuBarDemo menubardemo = new MenuBarDemo();
+                Homepage homepage = new Homepage();
                 
                 // 顯示目標GUI
-                menubardemo.setVisible(true);
+                homepage.setVisible(true);
                 
                 // 關閉當前GUI
                 dispose();
