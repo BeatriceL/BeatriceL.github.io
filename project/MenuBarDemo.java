@@ -106,7 +106,7 @@ public class MenuBarDemo extends JFrame {
             	switchToPage(7);
             	
             	// 實例化GUI class
-                LoginFrame loginFrame = new LoginFrame();
+                LoginFrame loginrame = new LoginFrame();
                 
                 // 顯示目標GUI
                 loginFrame.setVisible(true);
