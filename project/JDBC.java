@@ -13,18 +13,15 @@ public class JDBC {
 	private PreparedStatement stat;
 	private ResultSet rs;
 
-//建立Object的同時連接資料庫
-	public JDBC() {
-		getConnection();
-	}
 
 //連接資料庫
-	public void getConnection() {
+	public Connection getConnection() {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return conn;
 	}
 
 ///enrollButton/////////////////////////////////////////////////////////////////////////////////////////
