@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     private JPanel pagePanel;
     private JButton text1, text2, text3, text4, text5, text6, text7;
+    private JLabel rightLabel;
+
 
     public MainFrame() {
         setTitle("Homepage");
@@ -141,6 +143,7 @@ public class MainFrame extends JFrame {
         text1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	 rightLabel.setText("1");
             }
         });
         text2 = new JButton("TEXT2");
@@ -149,6 +152,7 @@ public class MainFrame extends JFrame {
         text2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("2");
             }
         });
         text3 = new JButton("TEXT3");
@@ -157,6 +161,7 @@ public class MainFrame extends JFrame {
         text3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("3");
             }
         });
         text4 = new JButton("TEXT4");
@@ -165,6 +170,7 @@ public class MainFrame extends JFrame {
         text4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("4");
             }
         });
         text5 = new JButton("TEXT5");
@@ -173,6 +179,7 @@ public class MainFrame extends JFrame {
         text5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("5");
             }
         });
         text6 = new JButton("TEXT6");
@@ -181,6 +188,7 @@ public class MainFrame extends JFrame {
         text6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("6");
             }
         });
         text7 = new JButton("TEXT7");
@@ -189,6 +197,7 @@ public class MainFrame extends JFrame {
         text7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	rightLabel.setText("7");
             }
         });
 
@@ -210,6 +219,9 @@ public class MainFrame extends JFrame {
         page1.add(rightPanel, BorderLayout.CENTER);
         
         pagePanel.add(page1, "1");
+        
+        rightLabel = new JLabel();
+        rightPanel.add(rightLabel);
 
         // 添加頁面2
 
