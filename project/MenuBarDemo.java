@@ -93,6 +93,15 @@ public class MenuBarDemo extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // 處理按鈕點擊事件
             	switchToPage(6);
+            	
+            	// 實例化GUI class
+                ProfileFrame profileFrame = new ProfileFrame(null);
+                
+                // 顯示目標GUI
+                profileFrame.setVisible(true);
+                
+                // 關閉當前GUI
+                dispose();
                 System.out.println("Personal Profile: ");
             }
         });
@@ -106,7 +115,7 @@ public class MenuBarDemo extends JFrame {
             	switchToPage(7);
             	
             	// 實例化GUI class
-                LoginFrame loginrame = new LoginFrame();
+                LoginFrame loginFrame = new LoginFrame();
                 
                 // 顯示目標GUI
                 loginFrame.setVisible(true);
