@@ -16,7 +16,7 @@ class WebCrawler {
 
         try {
             // 使用 Jsoup 連接並解析 Google 搜尋結果頁面
-            String searchUrl = "https://www.google.com/search?q=" + keyword;
+            String searchUrl = "https://www.google.com/search?q=" + keyword+"影評";
             Document doc = Jsoup.connect(searchUrl).get();
 
             // 更新搜尋結果的選擇器
@@ -44,7 +44,7 @@ class WebCrawler {
 
                 try {
                     System.out.println("正在爬第 " + count + " 筆資料");
-                    Thread.sleep(1500);
+                    Thread.sleep(100);
                     count += 1;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -93,7 +93,7 @@ class WebCrawler {
 
                         try {
                             System.out.println("正在爬child第 " + subCount + " 筆資料");
-                            Thread.sleep(1500);
+                            Thread.sleep(100);
                             subCount += 1;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -112,7 +112,7 @@ class WebCrawler {
             return true;
         } catch (MalformedURLException | URISyntaxException e) {
             // URL 格式異常，視為無效
-        	System.out.println("URL 格式異常，視為無效");
+         System.out.println("URL 格式異常，視為無效");
             return false;
         }
     }

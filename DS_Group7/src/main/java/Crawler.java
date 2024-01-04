@@ -21,7 +21,7 @@ public class Crawler
 	//建構子，並把keyword用UTF-8編碼
 	public Crawler(String searchKeyword, int times)
 	{
-		this.searchKeyword = searchKeyword;
+		this.searchKeyword = searchKeyword+"影評";
 		try 
 		{
 			this.encoededKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");

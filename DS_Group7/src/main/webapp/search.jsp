@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
     <link href="../dist/out.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                 <!--以下串後端需要改的地方-->
 
                 <div class="flex flex-row items-center justify-center">
-                    <form id="searchForm" action="/DS_Group7/Main" method="POST">
+                    <form id="searchForm" action="/DS_Group7/Main" method="GET">
                         <input type="text" name="keyword" placeholder="Key words"
                             class="p-4 focus:outline-none focus:ring-1 focus:ring-blue-300 w-3/4" />
                         <button type="submit"

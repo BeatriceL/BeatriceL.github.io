@@ -8,6 +8,10 @@ import java.util.Iterator;
 import javax.swing.text.GapContent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,11 +27,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/Main")
 public class Main extends HttpServlet {
-	
+  
     public static void main(String[] args) throws IOException {
-    	
-    	Scanner scanner = new Scanner(System.in);
-
+     Scanner scanner = new Scanner(System.in);
+    
         // 讓使用者輸入關鍵字和要抓取的結果數量
         String keyword = getValidInput("請輸入關鍵字: ", "[a-zA-Z\\u4e00-\\u9fa5]+", "請輸入中文或英文");
         int numberOfResults = Integer.parseInt(getValidInput("請輸入要抓取的結果數量: ", "\\d+", "請輸入數字"));
@@ -35,12 +38,12 @@ public class Main extends HttpServlet {
         ArrayList<WebNode> parentArray=new ArrayList<WebNode>();
         try {
         
-        	// 使用 WebCrawler 類別爬取網站標題、連結和內容
-        	parentArray = WebCrawler.crawlWeb(keyword, numberOfResults);
+         // 使用 WebCrawler 類別爬取網站標題、連結和內容
+         parentArray = WebCrawler.crawlWeb(keyword+"影評", numberOfResults);
 
 
         
-        	
+         
 
             // 在這裡你可以進一步處理 parentArray，例如印出資訊或進行其他操作
             for (WebNode parent : parentArray) {
@@ -73,7 +76,7 @@ public class Main extends HttpServlet {
                 System.err.println("找不到檔案: " + e.getMessage());
             } else {
                 // 其他IOException情況
-            	System.err.println("發生未知例外: " + e.getMessage());
+             System.err.println("發生未知例外: " + e.getMessage());
             }
 
             e.printStackTrace();
@@ -92,7 +95,7 @@ public class Main extends HttpServlet {
                 iterator.remove();
             }
         }
-		
+  
         // 評分
         WebNodeList WebNodess = new WebNodeList();
         for (WebNode parent : parentArray) {
@@ -101,19 +104,26 @@ public class Main extends HttpServlet {
                 traversal_PostOrder p1 = new traversal_PostOrder(tree1);
                 p1.traversal();
                 System.out.println(parent.nodeScore);
+                
                 WebNodess.add(parent);
             } catch (Exception e) {
-            	e.printStackTrace();
+             e.printStackTrace();
             }
         }
-		WebNodess.sort();
-		//印出排序後的list
-		WebNodess.output();
-		
-		//推薦搜尋
-		recommend_movie rMovie = new recommend_movie();
-		recommend_movie.print_out(rMovie.find_synonym(keyword));
-		
+        if (WebNodess.is_zero()== true){
+         System.out.println("no movie related result");
+        }
+        else {
+  WebNodess.sort();
+  //印出排序後的list
+  WebNodess.output();
+  System.out.println("----------------------------");
+        }
+  
+  //推薦搜尋
+  recommend_movie rMovie = new recommend_movie();
+  recommend_movie.print_out(rMovie.find_synonym(keyword));
+  
     }
     
     private static String getValidInput(String prompt, String regex, String errorMessage) {
@@ -163,12 +173,12 @@ public class Main extends HttpServlet {
         Iterator<WebNode> iterator = parentArray.iterator();
         while (iterator.hasNext()) {
             WebNode node = iterator.next();
-            if (words_set.find_synonym(node) == 1) {
+            if (words_set.find_synonym(node) >= 1) {
                 System.out.println("remove " + node.webPage.name);
                 iterator.remove();
             }
         }
-		
+  
         // 評分
         WebNodeList WebNodess = new WebNodeList();
         for (WebNode parent : parentArray) {
@@ -177,27 +187,43 @@ public class Main extends HttpServlet {
                 traversal_PostOrder p1 = new traversal_PostOrder(tree1);
                 p1.traversal();
                 System.out.println(parent.nodeScore);
-                WebNodess.add(parent);
+                
+                System.out.println(parent.nodeScore != 0.0);
+             if (parent.nodeScore != 0.0) {
+              WebNodess.add(parent);
+              }
             } catch (Exception e) {
-            	e.printStackTrace();
+             e.printStackTrace();
             }
         }
         
         ArrayList<WebNode> filteredList = new ArrayList<>();
 
-		WebNodess.sort();
-		HashMap<String, String> b = new HashMap<String, String>();
+        if (WebNodess.is_zero()== true){
+         System.out.println("no movie related result");
+        }
+        else {
+  WebNodess.sort();
+  //印出排序後的list
+  WebNodess.output();
+  System.out.println("----------------------------");
+        }
+  HashMap<String, String> b = new HashMap<String, String>();
 
-		//印出排序後的list
-		for(WebNode a:WebNodess.getLst())
-		{
-			b.put(a.webPage.name, a.webPage.url);
-		}
-		
-		
+  //印出排序後的list
+  for (int i=0;i<WebNodess.size();i++)  {
+   b.put(WebNodess.get(i).webPage.name, WebNodess.get(i).webPage.url);
+  }
+  
+  //推薦搜尋
+  recommend_movie rMovie = new recommend_movie();
+  ArrayList<String> rMovieRecommendations = rMovie.find_synonym(keyword);
+  
 
         // Set the result in the request attribute to be accessed by the JSP page
         request.setAttribute("filteredList", b);
+        
+        request.setAttribute("recommendations", rMovieRecommendations);
 
         // Forward the request and response to the JSP page
         request.getRequestDispatcher("result1.jsp").forward(request, response);
